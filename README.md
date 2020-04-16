@@ -1,4 +1,4 @@
-# Moving-Particle
+# Moving-Particles
 Canvas Animation
 Using Language:
 1. HTML(Canvas)
