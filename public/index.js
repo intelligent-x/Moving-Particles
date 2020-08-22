@@ -13,8 +13,8 @@ var canvas = document.getElementById("canvas"),
 		y : undefined
 	};
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 for( let i = 0 ; i < 400 ; i ++ ){
 	ball.x = getRandom( ball.r, canvas.width - ball.r );
@@ -38,11 +38,6 @@ canvas.addEventListener('mousemove',function(e){
 
 function draw(){
 	gd.clearRect( 0, 0, canvas.width, canvas.height );
-	gd.fillStyle = 'rgba( 255, 255, 255, 0.3 )';
-	gd.font = 'italic normal bold 50px Consolas';
-	gd.textAlign = 'center';
-	gd.textBaseline = 'middle';
-	gd.fillText( "Author: Zheng-Luxi", canvas.width / 2, canvas.height / 2 );
 	for( let item of balls ){
 		gd.beginPath();
 		gd.fillStyle = 'gray';
@@ -53,7 +48,8 @@ function draw(){
 			gd.moveTo( mouse.x, mouse.y );
 			gd.lineTo( item.x, item.y );
 			gd.strokeStyle = 'rgba( 100, 200, 100, 0.9 )';
-			gd.lineWidth = 150 / Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) );
+			gd.lineWidth = Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) ) < 5 ? 
+			3 : 150 / Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) );
 			gd.stroke();
 		}
 		for( let item1 of balls ){
@@ -62,7 +58,8 @@ function draw(){
 				gd.moveTo( item1.x, item1.y );
 				gd.lineTo( item.x, item.y );
 				gd.strokeStyle = 'rgba( 125, 200, 100, 0.7 )';
-				gd.lineWidth = 150 / Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) );
+				gd.lineWidth = Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) ) < 5 ? 
+				3 : 150 / Math.sqrt( ( mouse.x - item.x ) * ( mouse.x - item.x ) + ( mouse.y - item.y ) * ( mouse.y - item.y ) );
 				gd.stroke();
 			}
 		}
